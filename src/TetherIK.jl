@@ -1,10 +1,10 @@
 module TetherIK
 
 using GLMakie
-include("ForwardKinematics.jl")
+include("math/ForwardKinematics.jl")
 
 function viz_2d(link_lengths = [0.8, 0.8, 0.6],
-                init_joint_angles = [0.0, 0.0, 0.0])
+                init_joint_angles = [π/2, 0.0, 0.0])
     fig = Figure(size = (800, 800))
     ax = Axis(fig[1, 1], title = "TetherIK")
 
@@ -37,7 +37,7 @@ function viz_2d(link_lengths = [0.8, 0.8, 0.6],
 
     # Add sliders for joint control
     sg = SliderGrid(fig[2, 1],
-        (label = "Joint 1", range = -π:0.01:π, startvalue = 0.0),
+        (label = "Joint 1", range = 0:0.01:π, startvalue = 0.0),
         (label = "Joint 2", range = -π:0.01:π, startvalue = π/4),
         (label = "Joint 3", range = -π:0.01:π, startvalue = π/6),
     )
