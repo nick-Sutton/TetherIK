@@ -1,0 +1,10 @@
+name = "TetherIK"
+uuid = "b322039c-0932-48d8-a757-e0ed3b484c5f"
+version = "0.1.0"
+authors = ["Nicholas Sutton <nicksutton46@gmail.com>"]
+
+[deps]
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+
+[compat]
+GLMakie = "0.13.6"
