@@ -1,16 +1,16 @@
 module TetherIK
 
 using GLMakie
-include("math/ForwardKinematics.jl")
+include("math/kinematics/ForwardKinematics.jl")
 
-function viz_2d(link_lengths = [0.8, 0.8, 0.6],
+function viz_2d(link_lengths = [0.4, 0.5, 0.4],
                 init_joint_angles = [π/2, 0.0, 0.0])
     fig = Figure(size = (800, 800))
     ax = Axis(fig[1, 1], title = "TetherIK")
 
     joint_angles = Observable(init_joint_angles)
 
-    positions = @lift(ForwardKinematics.fk_2d($joint_angles, link_lengths))
+    positions = @lift(ForwardKinematics.forward_kinematics_2d($joint_angles, link_lengths))
 
     # Add ground plane
     hlines!(ax, 0, color = :black, linewidth = 3)
@@ -37,9 +37,9 @@ function viz_2d(link_lengths = [0.8, 0.8, 0.6],
 
     # Add sliders for joint control
     sg = SliderGrid(fig[2, 1],
-        (label = "Joint 1", range = 0:0.01:π, startvalue = 0.0),
-        (label = "Joint 2", range = -π:0.01:π, startvalue = π/4),
-        (label = "Joint 3", range = -π:0.01:π, startvalue = π/6),
+        (label = "Joint 1", range = 0:0.01:π, startvalue = π/2),
+        (label = "Joint 2", range = -π:0.01:π, startvalue = π/2),
+        (label = "Joint 3", range = -π:0.01:π, startvalue = π/2),
     )
     
     # Connect sliders to joint angles

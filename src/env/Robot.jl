@@ -28,4 +28,11 @@ mutable struct PlanerMobileManipulator
     joint_limits::Vector{Float64}
 end
 
+mutable struct CartPole
+    # name
+    # base_color
+    base_position::Vector{Float64}
+    base_angle::Vector{Float64}
+end
+
 end # Robot

@@ -1,11 +1,11 @@
 module ForwardKinematics
 
-export fk_2d
+export forward_kinematics_2d
 
 using LinearAlgebra
 using GLMakie
 
-function fk_2d(joint_angles, link_lengths)
+function forward_kinematics_2d(joint_angles, link_lengths)
     positions = Vector{Point2f}()
     push!(positions, Point2f(0, 0))  # Base position
 
@@ -21,4 +21,4 @@ function fk_2d(joint_angles, link_lengths)
     return positions
 end
 
-end # ForwardKinematics
+end # ForwardKinematics Module
