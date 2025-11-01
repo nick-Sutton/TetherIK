@@ -23,10 +23,24 @@ function NewtonRasphson(f, fp, x0, tol=1e-6, max_iter=100)
         x_curr = x_next
 
     end
+end
 
+function NewtonRasphson_pinv()
+    J = []
+    J_pinv = pinv(J)
 
+end
 
+function CCD(joints, k)
+    # q = configuration
+    for i=1:k 
+        q_curr = q_prev
 
+        for j in joints 
+            q_
+            
+        end
+    end
 end
 
 end

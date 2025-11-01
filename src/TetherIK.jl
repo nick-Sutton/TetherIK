@@ -10,7 +10,7 @@ function viz_2d(link_lengths = [0.4, 0.5, 0.4],
 
     joint_angles = Observable(init_joint_angles)
 
-    positions = @lift(ForwardKinematics.forward_kinematics_2d($joint_angles, link_lengths))
+    positions = @lift(ForwardKinematics.fk($joint_angles, link_lengths))
 
     # Add ground plane
     hlines!(ax, 0, color = :black, linewidth = 3)
