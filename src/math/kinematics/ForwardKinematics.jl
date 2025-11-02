@@ -24,7 +24,7 @@ function fk(joint_angles::Vector{Float64}, link_lengths::Vector{Float64}; alg::F
 end
 
 function fk(joint_angles::Vector{Float64}, link_lengths::Vector{Float64}, alg::Trig)
-    positions = Vector{Point2f}()
+    positions = Vector{Vector{Float64}}()
     push!(positions, Point2f(0, 0))  # Base position
 
     curr_position = [0.0, 0.0]
@@ -32,8 +32,8 @@ function fk(joint_angles::Vector{Float64}, link_lengths::Vector{Float64}, alg::T
 
     for (angle, length) in zip(joint_angles, link_lengths)
         cumulative_angle += angle
-        curr_position += length * [cos(cumulative_angle), sin(cumulative_angle)]
-        push!(positions, Point2f(curr_position...))
+        curr_position = curr_position + length * [cos(cumulative_angle), sin(cumulative_angle)]
+        push!(positions, copy(curr_position))
     end
 
     return positions

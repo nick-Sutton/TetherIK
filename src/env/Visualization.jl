@@ -5,7 +5,9 @@ using GLMakie
 
 Visualize a planar robot with reactive positions.
 """
-function viz_planar(positions::Observable{Vector{Point2f}})
+function viz_planar(positions::Observable{Vector{Vector{Float64}}})
+    positions_2f = @lift(Point2f.($positions))
+
     fig = Figure(size = (800, 800))
     ax = Axis(fig[1, 1], title = "TetherIK", aspect = DataAspect())
     
@@ -15,17 +17,17 @@ function viz_planar(positions::Observable{Vector{Point2f}})
             color = (:gray, 0.2))
     
     # Plot Links
-    lines!(ax, positions, linewidth = 6, color = :purple4)
+    lines!(ax, positions_2f, linewidth = 6, color = :purple4)
     
     # Plot Joints
-    scatter!(ax, positions, 
+    scatter!(ax, positions_2f, 
                 marker = :circle, 
                 markersize = 15, 
                 color = :crimson,
                 strokewidth = 1)
     
     # Plot end effector
-    end_effector = @lift($positions[end])
+    end_effector = @lift($positions_2f[end])
     scatter!(ax, end_effector,
                 marker = :hline,
                 markersize = 20,
