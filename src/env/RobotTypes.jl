@@ -1,10 +1,8 @@
-module Robot
-
 abstract type Robot end
-abstract type PlanerRobot <: Robot end
+abstract type PlanarRobot <: Robot end
 abstract type SpatialRobot <: Robot end
 
-mutable struct PlanerManipulator <: PlanerRobot
+mutable struct PlanarManipulator <: PlanarRobot
     # name
     # link_color
     # joint_color
@@ -13,14 +11,14 @@ mutable struct PlanerManipulator <: PlanerRobot
     joint_limits::Vector{Float64}
 end
 
-mutable struct PlanerMobile <: PlanerRobot
+mutable struct PlanarMobile <: PlanarRobot
     # name
     # base_color
     base_position::Vector{Float64}
     base_angle::Vector{Float64}
 end
 
-mutable struct PlanerMobileManipulator <: PlanerRobot
+mutable struct PlanarMobileManipulator <: PlanarRobot
     # name
     # base_color
     # link_color
@@ -32,7 +30,7 @@ mutable struct PlanerMobileManipulator <: PlanerRobot
     joint_limits::Vector{Float64}
 end
 
-mutable struct SpatialManipulator <: SpatialManipulator
+mutable struct SpatialManipulator <: SpatialRobot
     # name
     # link_color
     # joint_color
@@ -59,5 +57,3 @@ mutable struct SpatialMobileManipulator <: SpatialRobot
     joint_angles::Vector{Float64}
     joint_limits::Vector{Float64}
 end
-
-end # Robot

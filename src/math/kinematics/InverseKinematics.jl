@@ -1,7 +1,3 @@
-module InverseKinematics
-
-export ik
-
 abstract type IKAlgorithm end
 
 struct Newton <: IKAlgorithm
@@ -37,5 +33,3 @@ end
 function ik(robot, ee_pose, alg::FABRIK)
     
 end
-
-end # IK Module
